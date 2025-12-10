@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const auth = require("../middleware/auth");
+
 const {
   getBooks,
   createBook,
@@ -7,8 +7,8 @@ const {
   deleteBook,
 } = require("../controllers/bookController");
 
-router.route("/").get(getBooks).post(auth, createBook);
+router.route("/").get(getBooks).post(createBook);
 
-router.route("/:id").put(auth, updateBook).delete(auth, deleteBook);
+router.route("/:id").put(updateBook).delete(deleteBook);
 
 module.exports = router;

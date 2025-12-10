@@ -2,7 +2,7 @@
 //Imports
 const express=require("express")
 //Internal Imports
-const {register,login,verifyOtp}=require("../controllers/authController")
+const {register,login,verifyOtp,resendOtp, myInfo}=require("../controllers/authController")
 
 const router =express.Router();
 
@@ -15,7 +15,9 @@ router.post("/login",login)
 //TODO:VERIFY-OTP
 router.post("/verify-otp",verifyOtp)
 
+//TODO:RESEND-OTP
+router.post("/resend-otp",resendOtp)
 
-
-
+//TODO:MY-INFO
+router.get("/myInfo",myInfo)
 module.exports = router;

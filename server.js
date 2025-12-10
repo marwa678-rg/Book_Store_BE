@@ -8,7 +8,6 @@ const cors = require("cors")
 const authRoutes = require("./routes/auth");
 const bookRoutes = require("./routes/books");
 const purchaseRoutes = require("./routes/purchases");
-const errorHandler = require("./middleware/errorHandler");
 const connectToDatabase = require("./utils/db");
 
 
@@ -27,6 +26,7 @@ app.use(cors({
 
 
 
+
 //rate Limit
 const limiter = rateLimit({
   windowMs:15 * 60 *1000,
@@ -41,7 +41,7 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/books", bookRoutes);
 app.use("/api/v1/purchases", purchaseRoutes);
 
-app.use(errorHandler);
+
 //Connection Cloud DB
 connectToDatabase();
 

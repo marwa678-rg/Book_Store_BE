@@ -170,10 +170,23 @@ if(user.isVerify){
     response.status(500).json({message:"Internal Server Error !"})
   }
 }
+//TODO:MY-INFO
+async function myInfo(request,response){
+try {
+  const id= request.user._id 
+  const user=await User.findById({id})
+if(!user){
+ return  response.status(400).json({message:"UserNot Found"})
+}
+
+} catch (error) {
+  console.log(error)
+  response.status(500).json({message:"Internal Server Error"})
+}
+}
 
 
-
-module.exports = { register ,login,verifyOtp};
+module.exports = { register ,login,verifyOtp,resendOtp,myInfo};
 
 
 
