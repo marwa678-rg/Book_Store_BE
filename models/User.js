@@ -10,7 +10,11 @@ password:{type:String,required:true},
 
 role:{type:String,enum:["user","admin"],default:"user"},
 
-},{timestamps:true});
+otp:{type:String,maxLength:6},
+otpExpires:{type:Date},
+isVerify:{type:Boolean,default:false}
+
+});
 
 
 

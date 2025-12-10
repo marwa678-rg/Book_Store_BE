@@ -1,6 +1,6 @@
 
 //imports
-const nodemailer = require("nodemalier")
+const nodemailer = require("nodemailer")
 const dotenv=require("dotenv");
 
 //Global config
