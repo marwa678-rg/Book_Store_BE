@@ -7,7 +7,7 @@ function roleMiddleware(...roles){
     if(!userRole){
       return response.status(401).json({message:"Un authorized"})
     }
-   const isExist =  roles.includes("userRole");
+   const isExist =  roles.includes(userRole);
     if(!isExist){
       return response.status(403).json({message:"Access Denied ! "})
     }

@@ -1,8 +1,17 @@
-const router = require("express").Router();
 
-const { buyBook, getPurchases } = require("../controllers/purchaseController");
+//Imports
+const express = require("express")
+const router= express.Router();
+const{buyBook,getMyPurchases}=require("../controllers/purchaseController")
 
-router.post("/:bookId",buyBook);
-router.get("/",getPurchases);
+//InternalImports
+const{authMiddleware}=require("../middleware/auth.middleware")
 
-module.exports = router;
+//TODO:Buy book
+router.post("/:bookId",authMiddleware,buyBook )
+
+//TODO:MY PURCHASE
+router.get("/my",authMiddleware,getMyPurchases)
+
+
+module.exports=router;

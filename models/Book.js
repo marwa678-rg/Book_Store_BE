@@ -5,13 +5,13 @@ const BookSchema = new mongoose.Schema({
   // add fields here
 title:{type:String,required:true},
 
-author:{type:String},
+author:{type:String,required:true},
 
 category:{type:String,required:true},
 //url
 coverImage:{type:String},
 
-stock:{type:String,required:true,
+stock:{type:Number,required:true,
   default:1},
 
   price:{type:Number,required:true},

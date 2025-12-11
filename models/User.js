@@ -12,7 +12,11 @@ role:{type:String,enum:["user","admin"],default:"user"},
 
 otp:{type:String,maxLength:6},
 otpExpires:{type:Date},
-isVerify:{type:Boolean,default:false}
+isVerify:{type:Boolean,default:false},
+
+//count of Request of otp =>prevent spam
+otpRequestCount:{type:Number,default:0}
+
 
 });
 

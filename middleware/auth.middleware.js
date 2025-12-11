@@ -22,6 +22,8 @@ const dotenv = require("dotenv")
     }
     //verify token
     const payload = jwt.verify(token , process.env.JWT_SECRET)
+   
+
     request.user = payload;
 
     next();

@@ -1,14 +1,30 @@
-const router = require("express").Router();
-
-const {
-  getBooks,
-  createBook,
+//Imports
+const express= require("express");
+const router = express.Router();
+//Internal imports
+const {getALLBooks,
+  getSingleBook,
+  addNewBook,
   updateBook,
-  deleteBook,
+  deleteBook
 } = require("../controllers/bookController");
+const { authMiddleware } = require("../middleware/auth.middleware");
+const { roleMiddleware } = require("../middleware/role.middleware");
 
-router.route("/").get(getBooks).post(createBook);
 
-router.route("/:id").put(updateBook).delete(deleteBook);
+
+
+//TODO:GET ALL BOOKS
+router.get("/",getALLBooks)
+//TODO:GET SINGLE BOOK
+router.get("/:id",getSingleBook)
+//TODO:Add BOOK
+router.post("/add",authMiddleware,roleMiddleware("admin"),addNewBook)
+//TODO:Update
+router.put("/update/:id",authMiddleware,roleMiddleware("admin"),updateBook)
+//TODO:DELETE
+router.delete("/delete/:id",authMiddleware,roleMiddleware("admin"),deleteBook)
+
+
 
 module.exports = router;

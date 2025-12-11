@@ -162,9 +162,23 @@ return response.status(400).json({message:"This Email Not Related To User"});
 if(user.isVerify){
   return response.status(400).json({message:"User Already is Verified"})
 }
+//check resend limit
+if(user.otpRequestCount >= 2){
+  return response.json({message:"OTP limit reached ,Try Again later.."})
+}
+
 //generate OTP +OTPExpires
  const{otp,otpExpires}= generateOtp();
+ //update userInfo
+ user.otp=otp;
+ user.otpExpires=otpExpires;
+ user.otpRequestCount += 1;
 
+ //save user
+ await user.save();
+ //sendMail
+ await sendMail(email,"New OTP Code",`Your OTP is :${otp}` )
+response.json({message:"Otp Sent Successfully",count:user.otpRequestCount,})
   } catch (error) {
      console.log(error)
     response.status(500).json({message:"Internal Server Error !"})
