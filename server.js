@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/books", bookRoutes);
 app.use("/api/v1/purchases", purchaseRoutes);
-
+app.use("/uploads",express.static("public"))
 
 //Connection Cloud DB
 connectToDatabase();

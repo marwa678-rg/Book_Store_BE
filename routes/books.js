@@ -10,7 +10,7 @@ const {getALLBooks,
 } = require("../controllers/bookController");
 const { authMiddleware } = require("../middleware/auth.middleware");
 const { roleMiddleware } = require("../middleware/role.middleware");
-
+const {upload}= require("../utils/uploads")
 
 
 
@@ -18,8 +18,12 @@ const { roleMiddleware } = require("../middleware/role.middleware");
 router.get("/",getALLBooks)
 //TODO:GET SINGLE BOOK
 router.get("/:id",getSingleBook)
-//TODO:Add BOOK
-router.post("/add",authMiddleware,roleMiddleware("admin"),addNewBook)
+//TODO:Add BOOK + Add Multer
+router.post("/add",
+  authMiddleware,
+  roleMiddleware("admin"),
+  upload.single("coverImage"),
+  addNewBook)
 //TODO:Update
 router.put("/update/:id",authMiddleware,roleMiddleware("admin"),updateBook)
 //TODO:DELETE

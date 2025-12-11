@@ -68,7 +68,13 @@ try {
       });
   }
   //extract data
-const {title,author,category,coverImage,stock,price}= value;
+const {title,author,category,stock,price}= value;
+//handle image from multer
+let coverImage = null;
+if(request.file){
+  coverImage = "/uploads/"+request.file.filename;
+}
+
 //get user by authMiddleware
 const userId= request.user.id;
 //create book
